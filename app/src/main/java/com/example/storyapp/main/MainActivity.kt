@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        userPref = UserPref(this)
+        if (userPref.getToken() != null) {
+            next()
+        }
+
         animation()
 
         binding.signin.setOnClickListener {

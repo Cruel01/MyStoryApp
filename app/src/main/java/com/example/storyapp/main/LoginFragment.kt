@@ -38,12 +38,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userPref = UserPref(this.requireActivity())
+        userPref = UserPref(this.requireContext())
         loginVM = ViewModelProvider(this.requireActivity(), UniversalFactory(userPref))[UniversalVM::class.java]
-
-        if (userPref.getToken() != null) {
-            next()
-        }
 
         binding.passin.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

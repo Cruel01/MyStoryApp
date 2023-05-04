@@ -73,6 +73,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun nextMain() {
+        userPref.deleteToken()
         val intent = Intent(this@HomeActivity, MainActivity::class.java)
         startActivity(intent)
         finish()
