@@ -31,17 +31,13 @@ class SigninFragment : Fragment() {
     ): View? {
         binding = FragmentSigninBinding.inflate(inflater, container, false)
         return binding.root
-        animation()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        animation()
-
         binding.signup.visibility = View.VISIBLE
 
-        binding.password.addTextChangedListener(object: TextWatcher {
+        binding.password.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
 
@@ -92,33 +88,5 @@ class SigninFragment : Fragment() {
             commit()
         }
         binding.signup.visibility = View.GONE
-    }
-
-    fun animation() {
-        val judul = ObjectAnimator.ofFloat(binding.textView3, View.ALPHA, 1f).setDuration(300)
-        val txt_username = ObjectAnimator.ofFloat(binding.textView4, View.ALPHA, 1f).setDuration(200)
-        val txt_email = ObjectAnimator.ofFloat(binding.textView5, View.ALPHA, 1f).setDuration(300)
-        val txt_password = ObjectAnimator.ofFloat(binding.textView6, View.ALPHA, 1f).setDuration(300)
-        val username = ObjectAnimator.ofFloat(binding.username, View.ALPHA, 1f).setDuration(300)
-        val email = ObjectAnimator.ofFloat(binding.email, View.ALPHA, 1f).setDuration(300)
-        val password = ObjectAnimator.ofFloat(binding.password, View.ALPHA, 1f).setDuration(300)
-        val button = ObjectAnimator.ofFloat(binding.signup, View.ALPHA, 1f).setDuration(300)
-
-        val judul1 = AnimatorSet().apply {
-            play(judul)
-        }
-
-        val button1 = AnimatorSet().apply {
-            play(button)
-        }
-
-        val together = AnimatorSet().apply {
-            playTogether(txt_email, txt_username, txt_password, email, username, password)
-        }
-
-        AnimatorSet().apply {
-            playSequentially(judul1, together, button1)
-            start()
-        }
     }
 }

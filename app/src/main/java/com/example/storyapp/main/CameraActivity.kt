@@ -104,7 +104,7 @@ class CameraActivity : AppCompatActivity() {
             viewmodel.uploadStory.observe(this) {
                 it.getContentIfNotHandled()?.let { toastText ->
                     Toast.makeText(this@CameraActivity, toastText, Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@CameraActivity, MainActivity::class.java))
+                    startActivity(Intent(this@CameraActivity, HomeActivity::class.java))
                     finish()
                 }
             }

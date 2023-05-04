@@ -38,10 +38,12 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        animation()
-
         userPref = UserPref(this.requireActivity())
         loginVM = ViewModelProvider(this.requireActivity(), UniversalFactory(userPref))[UniversalVM::class.java]
+
+        if (userPref.getToken() != null) {
+            next()
+        }
 
         binding.passin.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -90,33 +92,6 @@ class LoginFragment : Fragment() {
         activity?.let {
             val intent = Intent(it, HomeActivity::class.java)
             it.startActivity(intent)
-        }
-    }
-
-    private fun animation() {
-        val judul = ObjectAnimator.ofFloat(binding.textView3, View.ALPHA, 1f).setDuration(300)
-        val txt_username = ObjectAnimator.ofFloat(binding.textView4, View.ALPHA, 1f).setDuration(200)
-        val txt_password = ObjectAnimator.ofFloat(binding.textView5, View.ALPHA, 1f).setDuration(200)
-        val regis = ObjectAnimator.ofFloat(binding.regis, View.ALPHA, 1f). setDuration(300)
-        val username = ObjectAnimator.ofFloat(binding.usernamae, View.ALPHA, 1f).setDuration(300)
-        val password = ObjectAnimator.ofFloat(binding.passin, View.ALPHA, 1f).setDuration(300)
-        val button = ObjectAnimator.ofFloat(binding.loginn, View.ALPHA, 1f).setDuration(300)
-
-        val judul1 = AnimatorSet().apply {
-            play(judul)
-        }
-
-        val button1 = AnimatorSet().apply {
-            play(button)
-        }
-
-        val together = AnimatorSet().apply {
-            playTogether(txt_username, txt_password, username, password, regis)
-        }
-
-        AnimatorSet().apply {
-            playSequentially(judul1, together, button1)
-            start()
         }
     }
 
