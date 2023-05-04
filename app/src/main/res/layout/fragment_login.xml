@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_login"
-    tools:context=".main.LoginFragment">
+    tools:context=".main.MainActivity">
 
     <TextView
         android:id="@+id/textView3"
@@ -66,6 +66,7 @@
         android:background="@drawable/editext"
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 

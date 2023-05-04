@@ -28,21 +28,23 @@ class MainActivity : AppCompatActivity() {
                 Log.d("MyFlexibleFragment", "Fragment Name :" + SigninFragment::class.java.simpleName)
                 fragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_signin, signinFragment, SigninFragment::class.java.simpleName)
+                    .add(R.id.main_frame, signinFragment, SigninFragment::class.java.simpleName)
                     .commit()
             }
+            binding.login.visibility = View.GONE
+            binding.signin.visibility = View.GONE
         }
 
         binding.login.setOnClickListener {
             if (fragmentl !is LoginFragment) {
-                binding.login.visibility = View.GONE
-                binding.signin.visibility = View.GONE
-
                 fragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_login, loginFragment, LoginFragment::class.java.simpleName)
+                    .add(R.id.main_frame, loginFragment, LoginFragment::class.java.simpleName)
                     .commit()
             }
+
+            binding.login.visibility = View.GONE
+            binding.signin.visibility = View.GONE
         }
     }
 

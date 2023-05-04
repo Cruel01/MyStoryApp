@@ -6,13 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.storyapp.R
+import com.example.storyapp.databinding.FragmentLoginBinding
 import com.example.storyapp.databinding.FragmentSigninBinding
 import com.example.storyapp.viewModel.SignVM
 
@@ -23,20 +23,23 @@ class SigninFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        childFragmentManager
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_signin, container, false)
+        binding = FragmentSigninBinding.inflate(inflater, container, false)
+        return binding.root
+        animation()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         animation()
+
+        binding.signup.visibility = View.VISIBLE
 
         binding.password.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -81,10 +84,14 @@ class SigninFragment : Fragment() {
     }
 
     private fun next() {
-        activity?.let {
-            val intent = Intent(it, HomeActivity::class.java)
-            it.startActivity(intent)
+        val loginFragment = LoginFragment()
+        val fragmentManager = childFragmentManager
+        fragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_signin, loginFragment, LoginFragment::class.java.simpleName)
+            addToBackStack(null)
+            commit()
         }
+        binding.signup.visibility = View.GONE
     }
 
     fun animation() {

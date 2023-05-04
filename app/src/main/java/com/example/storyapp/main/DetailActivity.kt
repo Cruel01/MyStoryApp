@@ -25,12 +25,13 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val id = intent.getStringExtra(EXTRA_ID)
-        if (id != null) {
-            viewmodel.getStory(id)
-        }
 
         userPref = UserPref(this)
         viewmodel = ViewModelProvider(this, UniversalFactory(userPref))[UniversalVM::class.java]
+
+        if (id != null) {
+            viewmodel.getStory(id)
+        }
 
         viewmodel.detailStory.observe(this) {
             binding.apply {

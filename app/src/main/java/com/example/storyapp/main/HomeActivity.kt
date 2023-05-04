@@ -61,7 +61,9 @@ class HomeActivity : AppCompatActivity() {
             next()
         }
 
-
+        binding.exit.setOnClickListener{
+            nextMain()
+        }
     }
 
     fun next() {
@@ -70,22 +72,9 @@ class HomeActivity : AppCompatActivity() {
         finish()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.exit -> {
-                startActivity(Intent(this@HomeActivity, LoginFragment::class.java))
-                userPref.deleteToken()
-                finish()
-                Toast.makeText(this@HomeActivity, "Berhasil Keluar", Toast.LENGTH_SHORT).show()
-            }
-        }
-        return true
+    fun nextMain() {
+        val intent = Intent(this@HomeActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

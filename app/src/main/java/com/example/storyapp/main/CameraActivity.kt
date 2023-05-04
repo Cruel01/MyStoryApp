@@ -101,7 +101,7 @@ class CameraActivity : AppCompatActivity() {
                 viewmodel.postStory(description, imageMultiPart)
             }
 
-            viewmodel.postStory.observe(this) {
+            viewmodel.uploadStory.observe(this) {
                 it.getContentIfNotHandled()?.let { toastText ->
                     Toast.makeText(this@CameraActivity, toastText, Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@CameraActivity, MainActivity::class.java))
@@ -130,7 +130,7 @@ class CameraActivity : AppCompatActivity() {
         createCustomTempFile(application).also {
             val photoURI: Uri = FileProvider.getUriForFile(
                 this@CameraActivity,
-                "com.nadhif.storyapp.camera",
+                "com.example.storyapp.main",
                 it
             )
             currentPhotoPath = it.absolutePath

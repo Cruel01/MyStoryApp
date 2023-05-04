@@ -6,7 +6,7 @@
     android:id="@+id/fragment_signin"
     android:layout_height="match_parent"
     android:background="@drawable/signin"
-    tools:context=".main.SigninFragment">
+    tools:context=".main.MainActivity">
 
 
     <TextView

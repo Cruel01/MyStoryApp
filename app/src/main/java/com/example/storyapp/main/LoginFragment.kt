@@ -25,14 +25,14 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        childFragmentManager
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,12 +75,14 @@ class LoginFragment : Fragment() {
 
         binding.regis.setOnClickListener {
             val signinFragment = SigninFragment()
-            val fragmentManager = parentFragmentManager
+            val fragmentManager = childFragmentManager
             fragmentManager.beginTransaction().apply {
                 replace(R.id.fragment_login, signinFragment, SigninFragment::class.java.simpleName)
                 addToBackStack(null)
                 commit()
             }
+
+            binding.loginn.visibility = View.GONE
         }
     }
 
