@@ -21,6 +21,8 @@ class UniversalVM(private val userPreference: UserPref): ViewModel() {
         private const val TAGSS = "Detail"
         private const val TAGSSS = "CAMERA_ACTIVITY"
     }
+    private val next = MutableLiveData<Handler<String>>()
+    val nextGo: LiveData<Handler<String>> = next
 
     private val story = MutableLiveData<ArrayList<Story>>()
     val listStory: LiveData<ArrayList<Story>> = story
@@ -37,6 +39,7 @@ class UniversalVM(private val userPreference: UserPref): ViewModel() {
                     val responseBody = response.body()
                     if (responseBody != null) {
                         userPreference.saveToken(response.body()!!.User.token)
+                        next.value = Handler(response.body()!!.User.name)
                     }
 
                 } else {
