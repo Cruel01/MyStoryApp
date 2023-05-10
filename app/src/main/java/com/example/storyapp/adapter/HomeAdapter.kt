@@ -2,16 +2,29 @@ package com.example.storyapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.storyapp.data.ListStory
 import com.example.storyapp.data.Story
 import com.example.storyapp.databinding.ListStoryBinding
 
-class HomeAdapter: RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter: PagingDataAdapter<Story, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     private val list = ArrayList<Story>()
     private var onItemClickCallback: OnItemClickCallback? = null
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
+            override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+    }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -49,7 +62,11 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(list[position])
+        val item = getItem(position)
+
+        if (item != null) {
+            holder.bind(item)
+        }
     }
 
     interface OnItemClickCallback {

@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.databinding.ActivityCameraBinding
+import com.example.storyapp.paging.Injection
 import com.example.storyapp.utils.UserPref
 import com.example.storyapp.utils.createCustomTempFile
 import com.example.storyapp.utils.reduceFileImage
@@ -63,7 +64,7 @@ class CameraActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         userPref = UserPref(this)
-        viewmodel = ViewModelProvider(this, UniversalFactory(userPref))[UniversalVM::class.java]
+        viewmodel = ViewModelProvider(this, UniversalFactory(this))[UniversalVM::class.java]
 
         binding.camera.setOnClickListener {
             takePhotoCamera()

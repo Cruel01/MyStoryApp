@@ -4,6 +4,7 @@ import com.example.storyapp.data.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
@@ -33,6 +34,13 @@ interface ApiService {
         @Path("id") id : String
     ) : Call<DetailStory>
 
+    @GET("stories")
+    suspend fun getAllStory(
+        @Header("Authorization") token : String?,
+        @Query("page") page : Int,
+        @Query("size") size : Int,
+    ) : Response<ListStory>
+
     @Multipart
     @POST("stories")
     fun uploadStory(
@@ -40,4 +48,10 @@ interface ApiService {
         @Part("description") description: RequestBody,
         @Part file: MultipartBody.Part
     ) : Call<PostStory>
+
+    @GET("stories")
+    fun getStoriesByLocation(
+        @Header("Authorization") token: String?,
+        @Query("location") location: String
+    ): Call<ListStory>
 }

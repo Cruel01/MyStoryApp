@@ -27,7 +27,7 @@ class DetailActivity : AppCompatActivity() {
         val id = intent.getStringExtra(EXTRA_ID)
 
         userPref = UserPref(this)
-        viewmodel = ViewModelProvider(this, UniversalFactory(userPref))[UniversalVM::class.java]
+        viewmodel = ViewModelProvider(this, UniversalFactory(this))[UniversalVM::class.java]
 
         if (id != null) {
             viewmodel.getStory(id)

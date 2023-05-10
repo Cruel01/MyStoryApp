@@ -1,8 +1,5 @@
 package com.example.storyapp.main
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,14 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.storyapp.R
-import com.example.storyapp.databinding.FragmentLoginBinding
 import com.example.storyapp.databinding.FragmentSigninBinding
-import com.example.storyapp.viewModel.SignVM
+import com.example.storyapp.viewModel.UniversalVM
 
 class SigninFragment : Fragment() {
 
     private lateinit var binding: FragmentSigninBinding
-    private val signVM by viewModels<SignVM>()
+    private val viewModel by viewModels<UniversalVM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +60,7 @@ class SigninFragment : Fragment() {
                 email.isEmpty() -> {
                     binding.email.error = "Isi Email"
                 }
-                else -> signVM.register(email, username, password)
+                else -> viewModel.register(email, username, password)
             }
             next()
         }

@@ -1,7 +1,10 @@
 package com.example.storyapp.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "Story")
 data class Story(
     @field:SerializedName("photoUrl")
     val photoUrl: String,
@@ -16,11 +19,12 @@ data class Story(
     val description: String,
 
     @field:SerializedName("lon")
-    val lon: Any,
+    val lon: Double,
 
+    @PrimaryKey
     @field:SerializedName("id")
     val id: String,
 
     @field:SerializedName("lat")
-    val lat: Any
+    val lat: Double
 )

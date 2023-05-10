@@ -1,7 +1,5 @@
 package com.example.storyapp.main
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -40,7 +38,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         userPref = UserPref(this.requireContext())
-        viewmodel = ViewModelProvider(this.requireActivity(), UniversalFactory(userPref))[UniversalVM::class.java]
+        viewmodel = ViewModelProvider(this.requireActivity(), UniversalFactory(this.requireContext()))[UniversalVM::class.java]
 
         binding.passin.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
