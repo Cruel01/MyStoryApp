@@ -8,16 +8,15 @@
     android:background="@drawable/infologin"
     tools:context=".main.MainActivity">
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0"
         android:text="@string/myApp"
         android:textColor="@color/white"
-        android:alpha="0"
         android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,13 +25,13 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="342dp"
+        android:layout_height="353dp"
+        android:layout_marginTop="72dp"
         android:alpha="0"
         android:src="@drawable/img"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -55,12 +54,11 @@
     <com.example.storyapp.customView.Button
         android:id="@+id/signin"
         android:layout_width="164dp"
-        android:alpha="0"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:alpha="0"
         android:background="@drawable/button"
         android:text="Sign in"
         android:textColor="@color/white"
@@ -75,11 +73,10 @@
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/button"
         android:alpha="0"
+        android:background="@drawable/button"
         android:text="Log In"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
