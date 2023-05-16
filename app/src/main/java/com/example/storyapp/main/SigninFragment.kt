@@ -8,14 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.R
 import com.example.storyapp.databinding.FragmentSigninBinding
+import com.example.storyapp.viewModel.UniversalFactory
 import com.example.storyapp.viewModel.UniversalVM
 
 class SigninFragment : Fragment() {
 
     private lateinit var binding: FragmentSigninBinding
-    private val viewModel by viewModels<UniversalVM>()
+    private lateinit var viewmodel: UniversalVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,8 @@ class SigninFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.signup.visibility = View.VISIBLE
+
+        viewmodel = ViewModelProvider(this.requireActivity(), UniversalFactory(this.requireContext()))[UniversalVM::class.java]
 
         binding.password.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -60,7 +64,7 @@ class SigninFragment : Fragment() {
                 email.isEmpty() -> {
                     binding.email.error = "Isi Email"
                 }
-                else -> viewModel.register(email, username, password)
+                else -> viewmodel.register(email, username, password)
             }
             next()
         }
